@@ -1,7 +1,10 @@
 <script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
+import { onMounted } from 'vue'
 const tg = window.Telegram.WebApp;
+onMounted(() => {
+  tg.ready();
+  tg.MainButton.show();
+})
 </script>
 
 <template>
@@ -12,5 +15,12 @@ const tg = window.Telegram.WebApp;
 </template>
 
 <style scoped>
-
+button {
+  padding: 10px 15px;
+  background: var(--tg-theme-button-color);
+  color: var(--tg-theme-button-text-color);
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
 </style>
