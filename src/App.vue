@@ -1,10 +1,19 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import {onMounted, watch} from 'vue'
 const tg = window.Telegram.WebApp;
+const onSendData = () => {
+  tg.sendData("{result:1}");
+  tg.close();
+}
 onMounted(() => {
   tg.ready();
   tg.MainButton.show();
 })
+
+watch(
+    tg.onEvent("mainButtonClicked", onSendData),
+     () => tg.offEvent("mainButtonClicked", onSendData)
+)
 </script>
 
 <template>
