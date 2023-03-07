@@ -19,7 +19,7 @@ watch(
 <template>
   <div>
     <p>Work</p>
-    <button @click="tg.close()">Закрыть</button>
+    <button @click="onSendData">Закрыть</button>
   </div>
 </template>
 
