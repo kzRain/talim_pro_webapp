@@ -1,12 +1,17 @@
 <script setup lang="ts">
-import {onMounted, watch} from 'vue'
+import {onMounted, watch, ref} from 'vue'
+import {vSelect} from 'components'
 const tg = window.Telegram.WebApp;
 const onSendData = () => {
-  tg.sendData("{result:1}");
+  const data = {
+    city: selectedCity.value
+  }
+  tg.sendData(JSON.stringify(data));
   tg.close();
 }
 onMounted(() => {
   tg.ready();
+  tg.MainButton.n
   tg.MainButton.show();
 })
 
@@ -14,16 +19,25 @@ watch(
     tg.onEvent("mainButtonClicked", onSendData),
      () => tg.offEvent("mainButtonClicked", onSendData)
 )
+const selectedCity = ref("")
+const cities = ["Almaty", "Astana", "Taraz"]
 </script>
 
 <template>
-  <div>
-    <p>Work</p>
-    <button @click="onSendData">Закрыть</button>
+  <div id="container">
+    <select name="city" id="city" v-model="selectedCity">
+      <option v-for="city in cities">{{ city }}</option>
+    </select>
+
   </div>
 </template>
 
 <style scoped>
+#container {
+  text-align: center;
+  margin-top: 10px;
+}
+
 button {
   padding: 10px 15px;
   background: var(--tg-theme-button-color);
