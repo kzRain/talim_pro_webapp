@@ -13,7 +13,7 @@ const onSendData = () => {
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(data)
     };
-    fetch("http://devtg.courstore.com/web-app", requestOptions)
+    fetch('http://devtg.courstore.com/web-app', requestOptions)
         .then(response => {
               console.log(response);
               tg.close();
