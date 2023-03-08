@@ -17,15 +17,15 @@ const onSendData = () => {
     };
     tg.MainButton.text = JSON.stringify(data);
     fetch('http://devtg.courstore.com/web-app', requestOptions)
-        .then((response) => {
-              console.log(response);
-              tg.close();
-            }
-        ).catch((error) => {
-          tg.MainButton.text = error
-        }
-    );
-    tg.MainButton.text = "Request sended"
+    //     .then((response) => {
+    //           console.log(response);
+    //           tg.close();
+    //         }
+    //     ).catch((error) => {
+    //       tg.MainButton.text = error
+    //     }
+    // );
+    // tg.MainButton.text = "Request sended"
   } else {
     tg.sendData(JSON.stringify(data));
     tg.close();
