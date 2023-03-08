@@ -13,12 +13,18 @@ const onSendData = () => {
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(data)
     };
+    tg.MainButton.text = JSON.stringify(data);
     fetch('http://devtg.courstore.com/web-app', requestOptions)
-        .then(response => {
+        .then((response) => {
               console.log(response);
               tg.close();
             }
-        );
+        ).catch((error) => {
+          tg.MainButton.text = error
+
+        }
+    );
+    tg.MainButton.text = "Request sended"
   } else {
     tg.sendData(JSON.stringify(data));
     tg.close();
@@ -29,7 +35,6 @@ let queryId = "";
 onMounted(() => {
   tg.ready();
   queryId = tg.initDataUnsafe?.query_id;
-  tg.MainButton.text = `Выбрать ${queryId}`;
 })
 
 watch(
@@ -59,6 +64,7 @@ watch(selectedCity, (value) => {
     tg.MainButton.hide();
   } else {
     tg.MainButton.show();
+    tg.MainButton.text = `Выбрать город ${value}`;
   }
 })
 </script>
