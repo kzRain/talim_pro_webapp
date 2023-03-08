@@ -10,7 +10,9 @@ const onSendData = () => {
   if (queryId !== "") {
     const requestOptions = {
       method: "POST",
-      headers: {"Content-Type": "application/json"},
+      headers: {"Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      },
       body: JSON.stringify(data)
     };
     tg.MainButton.text = JSON.stringify(data);
@@ -21,7 +23,6 @@ const onSendData = () => {
             }
         ).catch((error) => {
           tg.MainButton.text = error
-
         }
     );
     tg.MainButton.text = "Request sended"
