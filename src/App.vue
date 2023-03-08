@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import {onMounted, watch, ref} from 'vue'
-import {vSelect} from 'components'
 
 const tg = window.Telegram.WebApp;
 const onSendData = () => {
@@ -8,7 +7,7 @@ const onSendData = () => {
     webAppQueryId: queryId,
     city: selectedCity.value
   }
-  if (queryId === "") {
+  if (queryId !== "") {
     const requestOptions = {
       method: "POST",
       headers: {"Content-Type": "application/json"},
