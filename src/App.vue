@@ -5,15 +5,32 @@ import {vSelect} from 'components'
 const tg = window.Telegram.WebApp;
 const onSendData = () => {
   const data = {
+    webAppQueryId: queryId,
     city: selectedCity.value
   }
-  tg.sendData(JSON.stringify(data));
-  tg.close();
+  if (queryId === "") {
+    const requestOptions = {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(data)
+    };
+    fetch("http://devtg.courstore.com/web-app", requestOptions)
+        .then(response => {
+              console.log(response);
+              tg.close();
+            }
+        );
+  } else {
+    tg.sendData(JSON.stringify(data));
+    tg.close();
+  }
 }
+let queryId = "";
+
 onMounted(() => {
   tg.ready();
-  tg.MainButton.n
-  tg.MainButton.show();
+  queryId = tg.initDataUnsafe?.query_id;
+  tg.MainButton.text = `Выбрать ${queryId}`;
 })
 
 watch(
@@ -37,6 +54,14 @@ const onChange = (event) => {
   }
 }
 
+watch(selectedCity, (value) => {
+  console.log(value);
+  if (value === "") {
+    tg.MainButton.hide();
+  } else {
+    tg.MainButton.show();
+  }
+})
 </script>
 
 <template>
