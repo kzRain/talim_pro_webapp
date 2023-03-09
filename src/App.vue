@@ -15,7 +15,7 @@ const onSendData = () => {
       // },
       // body: JSON.stringify(data)
     };
-    fetch('http://devtg.courstore.com/')
+    fetch('https://google.com/')
         .then((respomse) => respomse.text())
         .then((response) => {
               console.log(response);
