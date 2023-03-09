@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import {onMounted, watch, ref} from 'vue'
+import axios from "axios";
 
 const tg = window.Telegram.WebApp;
 const onSendData = () => {
@@ -15,13 +16,14 @@ const onSendData = () => {
       // },
       // body: JSON.stringify(data)
     };
-    fetch('https://google.com/')
-        .then((respomse) => respomse.text())
-        .then((response) => {
+    tg.MainButton.text = JSON.stringify(data);
+    axios.post( "http://devtg.courstore.com/web-app",
+        data
+    ).then((response) => {
               console.log(response);
               tg.close();
-            })
-        .catch((error) => {
+            }
+        ).catch((error) => {
           tg.MainButton.text = error
         }
     );
