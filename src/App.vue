@@ -15,7 +15,7 @@ const onSendData = () => {
       },
       body: JSON.stringify(data)
     };
-    tg.MainButton.text = "Start";
+    tg.MainButton.text = JSON.stringify(data);
     fetch('http://devtg.courstore.com/web-app', requestOptions)
     //     .then((response) => {
     //           console.log(response);
