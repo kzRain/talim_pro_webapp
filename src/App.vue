@@ -17,7 +17,7 @@ const onSendData = () => {
       // body: JSON.stringify(data)
     };
     tg.MainButton.text = JSON.stringify(data);
-    axios.post( "http://devtg.courstore.com/web-app",
+    axios.post( "https://devtg.courstore.com/web-app",
         data
     ).then((response) => {
               console.log(response);
