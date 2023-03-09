@@ -82,6 +82,7 @@ watch(selectedCity, (value) => {
     <select name="city" id="city" v-model="selectedCity">
       <option v-for="city in cities">{{ city }}</option>
     </select>
+    <button @click="onSendData">Test</button>
   </div>
 </template>
 
